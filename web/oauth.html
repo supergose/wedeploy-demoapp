@@ -90,20 +90,15 @@
             token += data.id_token; 
         });
 
-        var settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": apiendpoint,
-            "method": "GET",
-            "headers": {
-                "authorization": token,
-                "cache-control": "no-cache"
-            }
-        }
+
 
         $("#button-api").click(function(){
-            $.ajax(settings).done(function (response) {
-                console.log(response);
+            $.ajax({
+                url: apiendpoint,
+                success: function(data, status) {
+                    return console.log(data);
+                },
+                beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization',token); } 
             });
         });
 
