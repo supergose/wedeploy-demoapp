@@ -52,6 +52,8 @@
 		<h2>Oauth redirect ...</h2>
 	</div>
 
+    <button id="button-button-api" class="btn btn-success">Call API</button>
+
     <script>
 
 
@@ -81,8 +83,28 @@
             "grant_type": "authorization_code"
         };
 
+        var token = "Bearer ";
+        var apiendpoint = "https://bmed.cloud.tyk.io/listamovimenti/hello?name=BMED";
+
         $.post( url, params ).done(function( data ) {
-            alert( "Data Loaded: " + data );
+            token += data.id_token; 
+        });
+
+        var settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": apiendpoint,
+            "method": "GET",
+            "headers": {
+                "authorization": token,
+                "cache-control": "no-cache"
+            }
+        }
+
+        $("#button-api").click(function(){
+            $.ajax(settings).done(function (response) {
+                console.log(response);
+            });
         });
 
     </script>
