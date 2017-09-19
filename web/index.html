@@ -3,7 +3,8 @@
 <head>
 	<meta charset="UTF-8">
 	<meta content="minimum-scale=1.0, width=device-width" name="viewport">
-	<title>It works!</title>
+	<title>Demo API</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<style>
         body {
             background: #0e141a;
@@ -29,12 +30,48 @@
             margin: 0;
             font-size: 16px;
         }
-        .logo {
+        button {
             position: absolute;
             bottom: 20px;
             left: 50%;
             transform: translate(-50%, -50%);
         }
+
+        .btn {
+            display: inline-block;
+            font-weight: normal;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: 0.5rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.25;
+            border-radius: 0.25rem;
+            transition: all 0.15s ease-in-out;
+        }
+
+        .btn:focus, .btn:hover {
+            text-decoration: none;
+        }
+
+        .btn-success {
+        color: #fff;
+        background-color: #28a745;
+        border-color: #28a745;
+        }
+
+        .btn-success:hover {
+        color: #fff;
+        background-color: #218838;
+        border-color: #1e7e34;
+        }
+
+        .btn-success:focus, .btn-success.focus {
+        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.5);
+        }
+
 
         @media screen and (min-width: 680px) {
             h1 {
@@ -48,10 +85,21 @@
 </head>
 <body>
 	<div class="container">
-		<h1>It works!</h1>
+		<h1>Demo API</h1>
 		<h2>Go grab a cold beer to celebrate.</h2>
 	</div>
 
-	<img class="logo" src="https://cloud.githubusercontent.com/assets/398893/16279177/af9b3622-386e-11e6-920e-3a3f33169831.png" width="150" alt="WeDeploy">
+	<button id="button-login" class="btn btn-success">Login</button>
+
+
+    <script>
+
+        $("#button-login").click(function(){
+
+            window.location.href = "https://accounts.google.com/o/oauth2/v2/auth?client_id=885112234544-5evc06p7fpcek79l3rioc3c73aegs557.apps.googleusercontent.com&response_type=code&scope=openid%20email&redirect_uri=https://oauth2-login-demo.example.com/code&state=security_token%3D138r1999ru3e1%26url%3Dhttps://oauth2-login-demo.example.com/myHome&nonce=0394852-3190485-2490358";
+
+        });
+
+    </script>
 </body>
 </html>
