@@ -84,7 +84,8 @@
         };
 
         var token = "Bearer ";
-        var apiendpoint = "https://bmed.cloud.tyk.io/listamovimenti/hello?name=BMED";
+        //var apiendpoint = "https://bmed.cloud.tyk.io/listamovimenti/hello?name=BMED";
+        var apiendpoint = "https://web-supergose.wedeploy.io";
 
         $.post( url, params ).done(function( data ) {
             token += data.id_token; 
