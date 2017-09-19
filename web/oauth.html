@@ -77,11 +77,13 @@
             "code": code,
             "client_id": "885112234544-5evc06p7fpcek79l3rioc3c73aegs557.apps.googleusercontent.com",
             "client_secret": "JZH3EcsN8dN-376usp9AUIqT",
-            "redirect_uri": "https://web-supergose.wedeploy.io",
+            "redirect_uri": "https://web-supergose.wedeploy.io/oauth.html",
             "grant_type": "authorization_code"
         };
 
-        $.post( url, params );
+        $.post( url, params ).done(function( data ) {
+            alert( "Data Loaded: " + data );
+        });
 
     </script>
 </body>
