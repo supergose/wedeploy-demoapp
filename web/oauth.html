@@ -95,6 +95,7 @@
         $("#button-api").click(function(){
             $.ajax({
                 url: apiendpoint,
+                type: 'GET',
                 success: function(data, status) {
                     return console.log(data);
                 },
