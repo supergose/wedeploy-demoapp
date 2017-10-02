@@ -107,8 +107,11 @@
             }
         };
 
-        var code = getUrlParameter('code');
+        var token = getUrlParameter('id_token');
 
+        alert(token);
+
+/*
         var url = "https://www.googleapis.com/oauth2/v4/token";
         var params = {
             "code": code,
@@ -135,7 +138,7 @@
                 beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization',token); } 
             });
         });
-
+*/
     </script>
 </body>
 </html>
