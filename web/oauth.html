@@ -112,7 +112,7 @@
         console.log("SECURITY TOKEN", token);
 
         //get access token
-        var accessTokenURL = "http://zanatta-test.apigee.net/jwt-bearer/oauth/accesstoken";
+        var accessTokenURL = "https://zanatta-test.apigee.net/jwt-bearer/oauth/accesstoken";
         var accessToken = "";
         var params = {
             "grant_type": "urn:ietf:params:oauth:grant-type:jwt-bearer",
@@ -132,7 +132,7 @@
 
 
         //API CALL
-        var apiendpoint = "http://zanatta-test.apigee.net/hello";
+        var apiendpoint = "https://zanatta-test.apigee.net/hello";
 
         $("#button-api").click(function(){
             $.ajax({
