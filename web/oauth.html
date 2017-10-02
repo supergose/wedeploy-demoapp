@@ -107,8 +107,9 @@
             }
         };
 
-        var token = getUrlParameter('id_token');
-
+        //var token = getUrlParameter('id_token');
+        var url = window.location.hash;
+        var token = url.substring(url.indexOf('#')+1);
         alert(token);
 
 /*
