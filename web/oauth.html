@@ -5,10 +5,14 @@
 	<meta content="minimum-scale=1.0, width=device-width" name="viewport">
 	<title>Demo API</title>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 	<style>
         body {
             background: #0e141a;
-            font-family: 'Open Sans', sans-serif;
         }
         .container {
             position: absolute;
@@ -31,45 +35,28 @@
             font-size: 16px;
         }
         button {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            margin: 20px;
         }
 
-        .btn {
-            display: inline-block;
-            font-weight: normal;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;
-            user-select: none;
-            border: 1px solid transparent;
-            padding: 0.5rem 0.75rem;
-            font-size: 1rem;
-            line-height: 1.25;
-            border-radius: 0.25rem;
-            transition: all 0.15s ease-in-out;
+        #toggle-console {
+            position: fixed;
+            right: 5px;
+            bottom: 5px;
+            z-index: 999;
         }
 
-        .btn:focus, .btn:hover {
-            text-decoration: none;
+        #visual-console {
+            position: fixed;
+            bottom:0;
+            background-color: white;
+            height: 100px;
+            width:100%;
+            font-weight: bold;
         }
 
-        .btn-success {
-        color: #fff;
-        background-color: #28a745;
-        border-color: #28a745;
-        }
-
-        .btn-success:hover {
-        color: #fff;
-        background-color: #218838;
-        border-color: #1e7e34;
-        }
-
-        .btn-success:focus, .btn-success.focus {
-        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.5);
+        #visual-console ul {
+            margin-top: 10px;
+            list-style-type: none;
         }
 
         @media screen and (min-width: 680px) {
@@ -84,12 +71,22 @@
 </head>
 <body>
 	<div class="container">
-		<h2>Oauth redirect ...</h2>
+		<h2>Authenticated page.</h2>
+        <button id="button-api" class="btn btn-success">Call API</button>
+        
 	</div>
 
-    <button id="button-api" class="btn btn-success">Call API</button>
+    <button id="toggle-console" class="btn btn-warning" data-toggle="collapse" data-target="#visual-console" aria-expanded="false" aria-controls="visual-console"> <strong>> Console</strong></button>
+
+    <div id="visual-console" class="collapse in">
+        <ul>
+            <li>> START!</li>
+        </ul>  
+    </div>
 
     <script>
+        var apiconsole = $("#visual-console ul");
+
         var getUrlParameter = function getUrlParameter(sParam) {
             var sPageURL = decodeURIComponent(window.location.search.substring(1)),
                 sURLVariables = sPageURL.split('&'),
@@ -111,6 +108,8 @@
         token = (t.split("&")[0]).split("=")[1];
         console.log("SECURITY TOKEN", token);
 
+        apiconsole.append("<li>>SECURITY TOKEN:: " + token + "</li>");
+
         //get access token
         var accessTokenURL = "https://zanatta-test.apigee.net/jwt-bearer/oauth/accesstoken";
         var accessToken = "";
@@ -125,7 +124,8 @@
             data: params,
             success: function(data, status) {
                 accessToken = data.access_token;
-                console.log("ACCESS TOKEN", accessToken)
+                console.log("ACCESS TOKEN", accessToken);
+                apiconsole.append("<li>>ACCESS TOKEN:: " + accessToken + "</li>");
             },
             beforeSend: function(xhr, settings) { xhr.setRequestHeader('Contet-type', 'application/x-www-form-urlencoded'); } 
         });
@@ -139,6 +139,7 @@
                 url: apiendpoint,
                 type: 'GET',
                 success: function(data, status) {
+                    apiconsole.append("<li>>RESPONSE API:: " + data + "</li>");
                     return console.log("RESPONSE API", data);
                 },
                 beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization', "Bearer " + accessToken); } 

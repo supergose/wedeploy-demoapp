@@ -36,10 +36,7 @@
             font-size: 16px;
         }
         button {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            margin: 20px;
         }
 
         @media screen and (min-width: 680px) {
@@ -54,13 +51,18 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Bmed demo API</h1>
+		<h1>Demo API</h1>
 		<h2>Go grab a cold beer to celebrate.</h2>
-	</div>
 
-	<button id="button-login" class="btn btn-success">Login</button>
-    <button id="button-login-google" class="btn btn-primary">Login Google</button>
-
+        <button id="button-login" type="button" class="btn btn-success" aria-label="Left Align">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+            IDM login
+        </button>
+        <button id="button-login-google" type="button" class="btn btn-primary" aria-label="Left Align">
+        <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+            Social login
+        </button>
+    </div>
 
     <script>
 
