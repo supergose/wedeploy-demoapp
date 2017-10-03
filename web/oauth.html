@@ -52,6 +52,8 @@
             height: 100px;
             width:100%;
             font-weight: bold;
+            overflow-y: auto;
+            font-size: 0.9em;
         }
 
         #visual-console ul {
@@ -87,6 +89,11 @@
     <script>
         var apiconsole = $("#visual-console ul");
 
+        var scrollConsole = function() {
+            var height = apiconsole[0].scrollHeight;
+            apiconsole.scrollTop(height);
+        };
+
         var getUrlParameter = function getUrlParameter(sParam) {
             var sPageURL = decodeURIComponent(window.location.search.substring(1)),
                 sURLVariables = sPageURL.split('&'),
@@ -107,9 +114,9 @@
         var t = url.substring(url.indexOf('#')+1);
         token = (t.split("&")[0]).split("=")[1];
         console.log("SECURITY TOKEN", token);
-
         apiconsole.append("<li>>SECURITY TOKEN:: " + token + "</li>");
-
+        scrollConsole();
+        
         //get access token
         var accessTokenURL = "https://zanatta-test.apigee.net/jwt-bearer/oauth/accesstoken";
         var accessToken = "";
@@ -126,6 +133,7 @@
                 accessToken = data.access_token;
                 console.log("ACCESS TOKEN", accessToken);
                 apiconsole.append("<li>>ACCESS TOKEN:: " + accessToken + "</li>");
+                scrollConsole();
             },
             beforeSend: function(xhr, settings) { xhr.setRequestHeader('Contet-type', 'application/x-www-form-urlencoded'); } 
         });
@@ -140,6 +148,7 @@
                 type: 'GET',
                 success: function(data, status) {
                     apiconsole.append("<li>>RESPONSE API:: " + data + "</li>");
+                    scrollConsole();
                     return console.log("RESPONSE API", data);
                 },
                 beforeSend: function(xhr, settings) { xhr.setRequestHeader('Authorization', "Bearer " + accessToken); } 
