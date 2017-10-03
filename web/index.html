@@ -5,10 +5,15 @@
 	<meta content="minimum-scale=1.0, width=device-width" name="viewport">
 	<title>Demo API</title>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
 	<style>
         body {
             background: #0e141a;
-            font-family: 'Open Sans', sans-serif;
         }
         .container {
             position: absolute;
@@ -37,42 +42,6 @@
             transform: translate(-50%, -50%);
         }
 
-        .btn {
-            display: inline-block;
-            font-weight: normal;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: middle;
-            user-select: none;
-            border: 1px solid transparent;
-            padding: 0.5rem 0.75rem;
-            font-size: 1rem;
-            line-height: 1.25;
-            border-radius: 0.25rem;
-            transition: all 0.15s ease-in-out;
-        }
-
-        .btn:focus, .btn:hover {
-            text-decoration: none;
-        }
-
-        .btn-success {
-        color: #fff;
-        background-color: #28a745;
-        border-color: #28a745;
-        }
-
-        .btn-success:hover {
-        color: #fff;
-        background-color: #218838;
-        border-color: #1e7e34;
-        }
-
-        .btn-success:focus, .btn-success.focus {
-        box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.5);
-        }
-
-
         @media screen and (min-width: 680px) {
             h1 {
                 font-size: 72px;
@@ -85,17 +54,22 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Demo API</h1>
+		<h1>Bmed demo API</h1>
 		<h2>Go grab a cold beer to celebrate.</h2>
 	</div>
 
 	<button id="button-login" class="btn btn-success">Login</button>
+    <button id="button-login-google" class="btn btn-primary">Login Google</button>
 
 
     <script>
 
         $("#button-login").click(function(){
             window.location.href = "https://dev-656840.oktapreview.com/oauth2/v1/authorize?client_id=0oac77xj75jfUGpPn0h7&scope=openid+email+groups&response_type=id_token&response_mode=fragment&nonce=staticNonce&redirect_uri=https://web-supergose.wedeploy.io/oauth.html&state=staticState";
+        });
+
+        $("#button-login-google").click(function(){
+            window.location.href = "https://dev-656840.oktapreview.com/oauth2/v1/authorize?idp=0oac905iuaZsnMSd20h7&client_id=0oac77xj75jfUGpPn0h7&response_type=id_token&response_mode=fragment&scope=openid+email+groups&redirect_uri=https://web-supergose.wedeploy.io/oauth.html&state=staticState&nonce=132321313";
         });
 
     </script>
